@@ -1,0 +1,64 @@
+* {
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+}
+.App {
+    margin: 0 auto;
+    width: 450px;
+}
+#Board, h1 {
+    margin-bottom: 50px;
+}
+select, button {
+    width: 80px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #000;
+    margin: 1px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -o-transition: 0.6s;
+}
+select {
+    padding-left: 10px;
+    width: 100px;
+}
+button:hover {
+    background-color: #000;
+    color: #fff;
+}
+button {
+    float: right;
+}
+select, button:first-of-type {
+    float: left;
+}
+input {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    line-height: 50px;
+    border: 1px solid #000;
+}
+input:nth-child(9n+1) {
+    border-left: 5px solid #000;
+}
+input:nth-child(9n+9), input:nth-child(9n+6), input:nth-child(9n+3) {
+    border-right: 5px solid #000;
+}
+input:nth-child(-n+9), input:nth-child(55),input:nth-child(56), input:nth-child(57), input:nth-child(58), input:nth-child(59), input:nth-child(60), input:nth-child(61), input:nth-child(62), input:nth-child(63) {
+    border-top: 5px solid #000;
+}
+input:nth-last-child(-n+9), input:nth-child(19), input:nth-child(20), input:nth-child(21), input:nth-child(22), input:nth-child(23), input:nth-child(24), input:nth-child(25), input:nth-child(26), input:nth-child(27) {
+    border-bottom: 5px solid #000;
+}
