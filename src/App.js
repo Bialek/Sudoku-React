@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './Board'; 
 import sudoku from 'sudoku-umd';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import Styles from './css/App.css';
 
@@ -38,6 +39,18 @@ class App extends Component {
 		});
 	}
 
+	save() {
+  		alert("game state copy save in clipboard. Save him!");
+	}
+
+	load() {
+		const save= prompt('put your saved game state');
+		this.setState({
+			initBoard: save,
+			board: save
+		});
+	}
+
 	// board string change to board Array, next replace old elemenet a newNumber by splice and change array to string by join('' - witout commas)
 	hadleTileChange(id, newNumber) {
 		let boardArray = (this.state.board).split('');
@@ -53,6 +66,7 @@ class App extends Component {
 			<div className="App">
 				<h1>Sudoku</h1>
 				<Board 
+					initBoard = {this.state.initBoard}
 					Board = {this.state.board}
 					onTileChange = {(id, newNumber) =>
 						this.hadleTileChange(id, newNumber)}	
@@ -67,6 +81,10 @@ class App extends Component {
 						<option value='inhuman'>Inhuman</option>
 					</select>
 					<button onClick={this.newGame.bind(this)}>New Game</button>
+					<button onClick={this.load.bind(this)}>Load</button>
+					<CopyToClipboard text={this.state.board}>
+          				<button onClick={this.save.bind(this)}>Save</button>
+       				</CopyToClipboard>
 					<button onClick={this.solve.bind(this)}>Solve</button>
 					<button onClick={this.check.bind(this)}>Check</button>
 					<button onClick={this.reset.bind(this)}>Restart</button>
