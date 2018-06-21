@@ -45,10 +45,12 @@ class App extends Component {
 
 	load() {
 		const save= prompt('put your saved game state');
-		this.setState({
-			initBoard: save,
-			board: save
-		});
+		if (save) {
+			this.setState({
+				board: save.slice(0, 81),
+				initBoard: save.slice(81)
+			});
+		}
 	}
 
 	// board string change to board Array, next replace old elemenet a newNumber by splice and change array to string by join('' - witout commas)
@@ -82,7 +84,7 @@ class App extends Component {
 					</select>
 					<button onClick={this.newGame.bind(this)}>New Game</button>
 					<button onClick={this.load.bind(this)}>Load</button>
-					<CopyToClipboard text={this.state.board}>
+					<CopyToClipboard text={this.state.board + this.state.initBoard}>
           				<button onClick={this.save.bind(this)}>Save</button>
        				</CopyToClipboard>
 					<button onClick={this.solve.bind(this)}>Solve</button>
