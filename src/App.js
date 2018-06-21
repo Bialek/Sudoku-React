@@ -3,7 +3,7 @@ import Board from './Board';
 import sudoku from 'sudoku-umd';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-import Styles from './css/App.css';
+import styles from './css/App.css'
 
 class App extends Component {
 	constructor(props) {
@@ -30,7 +30,7 @@ class App extends Component {
 	}
 
 	check() {
-		sudoku.solve(this.state.initBoard) === this.state.board ? alert('YOU WIN') : alert('Try again')
+		sudoku.solve(this.state.initBoard) === this.state.board ? alert('YOU WIN') : alert('Try again');
 	}
 
 	solve() {
