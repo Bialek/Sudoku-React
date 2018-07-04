@@ -31,7 +31,7 @@ select {
     padding-left: 10px;
     width: 100px;
 }
-button:hover {
+button:hover, button.active {
     background-color: #000;
     color: #fff;
 }
@@ -52,6 +52,9 @@ input {
     line-height: 50px;
     border: 1px solid #000;
 }
+input:disabled { 
+    background-color: #dfe6e9;
+}
 input:nth-child(9n+1) {
     border-left: 5px solid #000;
 }
@@ -63,4 +66,10 @@ input:nth-child(-n+9), input:nth-child(55),input:nth-child(56), input:nth-child(
 }
 input:nth-last-child(-n+9), input:nth-child(19), input:nth-child(20), input:nth-child(21), input:nth-child(22), input:nth-child(23), input:nth-child(24), input:nth-child(25), input:nth-child(26), input:nth-child(27) {
     border-bottom: 5px solid #000;
+}
+.error {
+    background-color: #ff0000;
+}
+.perfection {
+    background-color: #4cd137;
 }

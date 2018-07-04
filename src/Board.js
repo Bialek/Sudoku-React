@@ -23,7 +23,7 @@ class Board extends Component {
         this.props.onTileChange(id, newNumber);
     }
  
-    render() {	console.log(this.state.initBoard);
+    render() {	
         return ( 
             <div id="Board" className="Board">
                 {
@@ -33,6 +33,16 @@ class Board extends Component {
                             <Tile
                                 id={i}
                                 key={i}
+                                error={
+                                    this.props.isChecked &&
+                                    this.state.initBoard[i] === '.' &&
+                                    this.state.board[i] !== '.' &&
+                                    this.state.board[i] !== this.props.solvedBoard[i]
+                                }
+                                perfection={
+                                    this.props.isChecked &&
+                                    this.state.board[i] === this.props.solvedBoard[i]
+                                }
                                 number={number}
                                 disabled= {!!(this.state.initBoard[i].trim() !=='.')}
                                 onTileChange = {(id, newNumber) =>

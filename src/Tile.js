@@ -12,7 +12,7 @@ class Tile extends Component {
     changeHandle(e) {
         let newNumber = e.target.value;
         if (newNumber < 1 || newNumber > 9) {
-            newNumber = 1;
+            newNumber = " ";
         }
         this.setState({ number: newNumber});
         this.props.onTileChange(this.state.id, newNumber);
@@ -24,15 +24,16 @@ class Tile extends Component {
         });
     }
 
-    render() { 
+    render() {
         return (
             <input 
                 type='number'
-                max= '1'
-                min= '9'
-                maxLength= '1'
+                max= {9}
+                min= {1}
+                maxLength= {1}
                 value={this.state.number}
                 disabled = {this.props.disabled}
+                className = {this.props.error ? 'error' : this.props.perfection ? 'perfection' : '' }
                 onChange={e => this.changeHandle(e)}
             />
         )

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Board from './Board'; 
 import sudoku from 'sudoku-umd';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
-import styles from './css/App.css'
+import './css/App.css'
 
 class App extends Component {
 	constructor(props) {
@@ -12,6 +11,8 @@ class App extends Component {
 			difficulty: 'easy',
 			initBoard: '',
 			board: '',
+			solvedBoard: '',
+			isChecked: false
 		};
 	}
 
@@ -19,7 +20,8 @@ class App extends Component {
 		const newBoard = sudoku.generate(this.state.difficulty);
 		this.setState({
 			initBoard: newBoard,
-			board: newBoard
+			board: newBoard,
+			solvedBoard: sudoku.solve(newBoard)
 		});	
 	}
 
@@ -30,7 +32,10 @@ class App extends Component {
 	}
 
 	check() {
-		sudoku.solve(this.state.initBoard) === this.state.board ? alert('YOU WIN') : alert('Try again');
+		if (sudoku.solve(this.state.initBoard) === this.state.board) {alert('YOU WIN');}
+		this.setState({
+			isChecked: !this.state.isChecked
+		});	
 	}
 
 	solve() {
@@ -70,6 +75,8 @@ class App extends Component {
 				<Board 
 					initBoard = {this.state.initBoard}
 					Board = {this.state.board}
+					isChecked = {this.state.isChecked}
+					solvedBoard = {this.state.solvedBoard}
 					onTileChange = {(id, newNumber) =>
 						this.hadleTileChange(id, newNumber)}	
 				/>
@@ -88,7 +95,7 @@ class App extends Component {
           				<button onClick={this.save.bind(this)}>Save</button>
        				</CopyToClipboard>
 					<button onClick={this.solve.bind(this)}>Solve</button>
-					<button onClick={this.check.bind(this)}>Check</button>
+					<button className={this.state.isChecked ? 'active' : 'none'} onClick={this.check.bind(this)}>Check</button>
 					<button onClick={this.reset.bind(this)}>Restart</button>
 				</div>
 			</div>
